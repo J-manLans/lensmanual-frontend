@@ -32,182 +32,52 @@ header {
 nav {
   position: sticky;
   top: 0;
-  display: flex;
-  gap: 2cqi;
-  justify-content: center;
-  align-items: center;
   background-color: var(--main-light);
   box-shadow: 0 0.3cqi 1cqi 0.3cqi var(--dark-shadow);
-  font-size: clamp(1rem, 2cqi, 3rem);
   z-index: 999;
 }
-.nav__links {
+nav ul {
+  display: flex;
+  gap: 2cqi;
+  font-size: clamp(1rem, 2cqi, 3rem);
+  width: max-content;
+  margin-inline: auto;
   overflow: hidden;
 }
 .nav__links a {
-  overflow: hidden;
   position: relative;
   isolation: isolate;
-}
-.nav__links a,
-.nav--drop-down-wrapper__title {
   padding-inline: 1cqi;
-  height: 100%;
   transition: 0.1s;
   color: var(--main-dark);
 }
-.admin__links a {
-  color: var(--main-light) ;
-  background-color: var(--synsam-acc);
-}
-.admin__links a:hover {
-  color: var(--main-dark) ;
-}
-nav:hover a,
-nav:hover .nav--drop-down-wrapper__title {
+nav ul:hover a {
   opacity: 0.7;
 }
-.nav__links a:hover {
+nav ul a:hover {
   opacity: 1;
 }
-.nav__links:not(.admin__links) a::after {
+.nav__links a::after {
   content: "";
   position: absolute;
-  inset: 85% 0 0 0;
+  inset: 86% 0 0 0;
   background-color: var(--synsam-acc);
   transition: 0.2s;
   transform: translateY(105%);
   transform-origin: bottom;
   z-index: -1;
 }
-.nav__links:not(.admin__links) a:hover::after {
+.nav__links a:hover::after {
   transform: translate(0);
 }
-.nav--drop-down-wrapper {
-  position: relative;
-  cursor: pointer;
-  overflow: visible;
+.admin__links a {
+  color: var(--synsam-acc);
 }
-.nav--drop-down-wrapper__drop-down {
-  position: absolute;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background-color: var(--main-light);
-  transition: 0.3s ease-in-out;
-  transform-origin: top;
-  transform: scaleY(0);
+.admin__links a:hover {
+  color: var(--main-light);
 }
-.nav--drop-down-wrapper:hover .nav--drop-down-wrapper__drop-down {
-  transform: scaleY(1);
-}
-.nav--drop-down-wrapper__drop-down a {
-  transition: 0.15s;
-  width: 100%;
-  display: inline-block;
-}
-.nav--drop-down-wrapper__drop-down a::after {
-  transform: translateX(-115%);
-}
-.nav--drop-down-wrapper__drop-down a:hover::after {
-  transform: translateX(-80%);
-}
-
-/*=====================*/
-/*=====================*/
-/*=====================*/
-
-.glasses {
-  padding: 10cqi 5cqi;
-  border-bottom: 2px dotted;
-}
-.glasses:nth-of-type(2n) {
-  background-color: var(--dark-theme-background-second);
-}
-.glasses__title {
-  position: relative;
-  font-size: clamp(2.9rem, 6cqi, 8rem);
-  text-transform: uppercase;
-}
-.glasses__title::before {
-  content: "";
-  display: block;
-  position: relative;
-  width: 0;
-  height: 1em;
-  margin-top: -1em;
-}
-.glasses__title::after {
-  content: "";
-  position: absolute;
-  bottom: 0.5cqi;
-  width: 0;
-  height: clamp(2.9rem, 6cqi, 8rem);
-  margin-left: 0.3cqi;
-  border: 1px solid;
-  opacity: 1;
-  animation: blink 1s ease-in infinite;
-}
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  51% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.glasses__additions {
-  position: relative;
-  padding: 2rem 0;
-  margin: 0 6cqi;
-  margin-bottom: 7rem;
-  line-height: 1.7rem;
-  max-width: 75ch;
-  border-top: 3px solid var(--synsam-acc-two);
-  border-bottom: 3px solid var(--synsam-acc-two);
-}
-ul .glasses__additions-no-bullet {
-  list-style-type: none;
-}
-.glasses .accent-clr {
-  color: var(--synsam-acc-blue);
-}
-.glasses .accent-clr-two {
-  color: var(--synsam-acc-two);
-}
-/*=====================*/
-/*=====================*/
-/*=====================*/
-.glasses__quality {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 65rem;
-  margin-inline: auto;
-  padding: 2rem;
-  gap: 2rem;
-  justify-content: center;
-}
-.quality__heading {
-  width: 67%;
-  border-bottom: 4px dotted var(--synsam-acc);
-  text-align: center;
-  text-transform: uppercase;
-  line-height: 3rem;
-  font-size: 2rem;
-}
-.quality__heading:not(:first-child) {
-  margin: 5rem 0 0 0;
-}
-.under-heading {
-  line-height: inherit;
-  border: none;
-  font-size: inherit;
-  margin: 0 0 1rem 0;
-  text-align: center;
-  width: 100%;
+.admin__links a::after {
+  inset: 0;
+  background-color: var(--dark-theme-background);
+  transform: translateX(101%);
 }

@@ -10,14 +10,14 @@ html {
   }
   :root {
     --main-light: white;
-    --main-dark: #242424;
-    --dark-theme-background: #121212;
-    --dark-theme-background-second: #161616;
+    --main-dark: rgb(36, 36, 36);
+    --dark-theme-background: rgb(18, 18, 18);
+    --dark-theme-background-second: rgb(22, 22, 22);
     --dark-shadow: rgb(34, 34, 34);
     --synsam-acc: orangered;
     --synsam-acc-two: rgba(255, 68, 0, 0.8);
-    --synsam-acc-blue: #00baff;
-    --opacity-clr: #3f3f3f70;
+    --synsam-acc-blue: rgb(0, 186, 255);
+    --opacity-clr: rgba(63, 63, 63, 0.439);
   }
   img,
   picture,
