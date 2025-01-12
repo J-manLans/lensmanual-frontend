@@ -2,9 +2,6 @@
     padding: 10cqi 5cqi;
     border-bottom: 2px dotted;
   }
-  .glasses:nth-of-type(2n) {
-    background-color: var(--dark-theme-background-second);
-  }
   .glasses__title {
     position: relative;
     font-size: clamp(2.9rem, 6cqi, 8rem);

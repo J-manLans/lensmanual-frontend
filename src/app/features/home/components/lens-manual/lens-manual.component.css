@@ -1,6 +1,6 @@
 /*=====================*/
 
-header {
+#manual-header {
   display: flex;
   height: 80vh;
   justify-content: space-between;
@@ -8,7 +8,7 @@ header {
   background-color: var(--opacity-clr);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   background-blend-mode: overlay;
   background-attachment: fixed;
   filter: grayscale(0.5);
@@ -56,6 +56,7 @@ nav ul:hover a {
 }
 nav ul a:hover {
   opacity: 1;
+  cursor: pointer;
 }
 .nav__links a::after {
   content: "";
@@ -80,4 +81,7 @@ nav ul a:hover {
   inset: 0;
   background-color: var(--dark-theme-background);
   transform: translateX(101%);
+}
+.lens-type-wrapper:nth-of-type(2n) {
+  background-color: var(--dark-theme-background-second);
 }

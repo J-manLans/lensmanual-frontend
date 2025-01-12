@@ -23,7 +23,7 @@ export class LensManualComponent {
    * On window load, a random filename is selected from the array, and the CSS
    * `backgroundImage` property is updated to display the chosen image.
    */
-  heroImages(): void {
+  private heroImages(): void {
     const heroImages = [
       'hero-image1.jpg',
       'hero-image2.jpg',
@@ -55,7 +55,7 @@ export class LensManualComponent {
     which gives us a maximum number of the length of the array - 1 after we use the
     floor method. Then this number is used to retrieve the new heroImage from the array
     */
-    const heroImage = availableImages[Math.floor(Math.random() * heroImages.length)];
+    const heroImage = availableImages[Math.floor((Math.random() * availableImages.length))];
 
     document.getElementById('manual-header')!.style.backgroundImage = `url('/img/hero-img/${heroImage}')`;
 
