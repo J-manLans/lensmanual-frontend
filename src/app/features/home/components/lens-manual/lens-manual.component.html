@@ -10,10 +10,10 @@
 <nav>
   <ul>
     <li class="nav__links">
-      <a [routerLink]="[]" fragment="progressiva">Progressiva</a>
+      <a (click)="scrollIntoView('#progressive-section')">Progressiva</a>
     </li>
     <li class="nav__links">
-      <a [routerLink]="[]" fragment="enkelslipade">Enkelslipade</a>
+      <a (click)="scrollIntoView('#single-sectdion')">Enkelslipade</a>
     </li>
     <li class="nav__links admin__links">
       <a routerLink="/admin">ADMIN</a>
@@ -29,12 +29,12 @@
       Progressive
     ====================================-->
 
-    <app-progressive></app-progressive>
+    <app-progressive id="progressive-section"></app-progressive>
 
     <!--===================================
       Single
     ====================================-->
 
-    <app-single></app-single>
+    <app-single id="single-section"></app-single>
 
   </main>

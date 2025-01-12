@@ -11,7 +11,6 @@ import { SingleComponent } from "../single/single.component";
   styleUrl: './lens-manual.component.css'
 })
 export class LensManualComponent {
-
   ngOnInit(): void {
     this.heroImages()
   }
@@ -62,4 +61,9 @@ export class LensManualComponent {
 
     sessionStorage.setItem('heroImage', heroImage);
   };
+
+  scrollIntoView(section: string) {
+    document.querySelector(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    || console.warn(`Element with selector "${section}" not found.`)
+  }
 }
