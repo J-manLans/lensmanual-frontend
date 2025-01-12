@@ -62,6 +62,10 @@ export class LensManualComponent {
     sessionStorage.setItem('heroImage', heroImage);
   };
 
+  /**
+   * Scrolls to the start of the specified section within the page.
+   * @param section section to scroll to
+   */
   scrollIntoView(section: string) {
     document.querySelector(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     || console.warn(`Element with selector "${section}" not found.`)
