@@ -50,4 +50,16 @@ export class LensesComponent {
       }).join(', ')
     });
   }
+
+  deleteLens(lensName: string, quality: number) {
+    this.backendService.deleteLense(lensName, quality).subscribe({
+      next: (lense) => {
+        console.log(`Linsen ${lense.name} togs bort.`);
+        this.loadLenses();
+      },
+      error: (error) => {
+        console.error(`An error occurred when deleting lense ${lensName}: ${error.message}`);
+      }
+    });
+  }
 }

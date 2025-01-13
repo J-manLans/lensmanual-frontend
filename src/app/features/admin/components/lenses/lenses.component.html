@@ -26,7 +26,7 @@
                 <td>{{lense.manufacturingType}}</td>
                 <td>{{ lense.indexPrices }}</td>
                 <td><button class="lenses-wrapper__edit-btn">Edit</button></td>
-                <td><button class="lenses-wrapper__delete-btn">Delete</button></td>
+                <td><button (click)="deleteLens(lense.name, lense.quality)" class="lenses-wrapper__delete-btn">Delete</button></td>
             </tr>
         </tbody>
     </table>
