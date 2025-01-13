@@ -1,0 +1,12 @@
+header {
+    position: relative;
+    margin-top: 2rem;
+    margin-inline: 2rem;
+    border-bottom: 3px solid var(--synsam-acc-two);
+    font-size: 5em;
+
+    button {
+        color: var(--synsam-acc);
+        border: 1px solid;
+    }
+}

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LensManualComponent } from './features/home/components/lens-manual/lens-manual.component';
-import { AdminComponent } from './features/admin/admin.component';
+import { AdminComponent } from './features/admin/components/admin/admin.component';
 
 export const routes: Routes = [
     {
