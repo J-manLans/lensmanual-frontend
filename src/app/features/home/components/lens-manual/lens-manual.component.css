@@ -75,11 +75,11 @@ nav ul a:hover {
   color: var(--synsam-acc);
 }
 .admin__links a:hover {
-  color: var(--main-light);
+  color: var(--main-dark);
 }
 .admin__links a::after {
   inset: 0;
-  background-color: var(--dark-theme-background);
+  background-color: var(--synsam-acc-blue);
   transform: translateX(101%);
 }
 .lens-type-wrapper:nth-of-type(2n) {

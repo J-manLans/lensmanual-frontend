@@ -2,7 +2,7 @@ table {
     table-layout: fixed;
     border-collapse: collapse;
     font-size: 0.9em;
-    border: .2rem solid;
+    border: .2rem solid var(--synsam-acc-two);
 }
 
 thead {
@@ -18,7 +18,7 @@ th {
 }
 
 tbody > tr {
-    border-bottom: thin solid var(--main-light);
+    border-bottom: thin solid var(--synsam-acc-two);
 }
 
 tbody > tr > td {

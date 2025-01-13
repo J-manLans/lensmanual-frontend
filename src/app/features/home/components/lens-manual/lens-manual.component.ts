@@ -66,7 +66,7 @@ export class LensManualComponent {
    * Scrolls to the start of the specified section within the page.
    * @param section section to scroll to
    */
-  scrollIntoView(section: string) {
+  scrollIntoView(section: string): void {
     document.querySelector(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     || console.warn(`Element with selector "${section}" not found.`)
   }

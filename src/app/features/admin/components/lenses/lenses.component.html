@@ -19,12 +19,12 @@
         </thead>
         <!-- The table body will be populated by main.js -->
         <tbody id="lenses-wrapper__lens_data">
-            <tr>
-                <td>lens.type</td>
-                <td>lens.name</td>
-                <td>lens.quality</td>
-                <td>lens.manufacturingType</td>
-                <td>1.74: 14900, 1.67: 13400, 1.6: 12900</td>
+            <tr *ngFor="let lense of lenses">
+                <td>{{lense.type}}</td>
+                <td>{{lense.name}}</td>
+                <td>{{lense.quality}}</td>
+                <td>{{lense.manufacturingType}}</td>
+                <td>{{ lense.indexPrices }}</td>
                 <td><button class="lenses-wrapper__edit-btn">Edit</button></td>
                 <td><button class="lenses-wrapper__delete-btn">Delete</button></td>
             </tr>
