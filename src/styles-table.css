@@ -1,0 +1,31 @@
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    border: .2rem solid;
+}
+
+thead {
+    position: sticky; /* Make table head stick below the nav bar */
+}
+
+th {
+    background-color: var(--synsam-acc-two);
+    padding: .8rem .5rem .8rem .5rem;
+    font-weight: bolder;
+    vertical-align: bottom;
+    text-align: left;
+}
+
+tbody > tr {
+    border-bottom: thin solid var(--main-light);
+}
+
+tbody > tr > td {
+    vertical-align: center;
+    padding: .5rem;
+    /* By default, left align the text in all data cells. To change text alignment
+    for data cells that should not be left-aligned, apply one of the
+    text-right or text-center CSS classes. */
+    text-align: left;
+}

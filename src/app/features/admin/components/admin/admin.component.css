@@ -1,12 +1,33 @@
 header {
-    position: relative;
-    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
     margin-inline: 2rem;
     border-bottom: 3px solid var(--synsam-acc-two);
     font-size: 5em;
 
+    h1 {
+        margin-top: 2rem;
+    }
+
     button {
-        color: var(--synsam-acc);
-        border: 1px solid;
+        position: relative;
+        align-self: start;
+        padding-inline: .5rem;
+        z-index: 1;
+    }
+
+    button::after {
+        content: "";
+        position: absolute;
+        inset: -20% 0 0 0;
+        background-color: var(--synsam-acc-blue);
+        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        z-index: -1;
+        transition: transform .1s ease-in-out;
+        transform: translateY(-10%);
+    }
+    button:hover::after {
+        transform: translateY(0);
     }
 }

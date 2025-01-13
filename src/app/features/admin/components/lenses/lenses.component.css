@@ -1,0 +1,22 @@
+.lenses-wrapper {
+    margin: 2rem auto 2rem auto;
+    width: max-content;
+}
+
+.lenses-wrapper__table-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+
+}
+button {
+    background-color: var(--synsam-acc);
+    padding: .2rem .4rem;
+    border-radius: .3rem;
+}
+.lenses-wrapper__edit-btn {
+    background-color: var(--synsam-acc-blue);
+}
+.lenses-wrapper__delete-btn {
+    background-color: red;
+}
