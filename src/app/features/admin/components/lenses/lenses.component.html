@@ -2,7 +2,7 @@
 
     <div class="lenses-wrapper__table-header">
         <h2>Linser</h2>
-        <button>Lägg Till</button>
+        <button (click)="openAddModal(addModal)">Ny Lins</button>
     </div>
 
     <table>
@@ -20,14 +20,70 @@
         <!-- The table body will be populated by main.js -->
         <tbody id="lenses-wrapper__lens_data">
             <tr *ngFor="let lense of lenses">
-                <td>{{lense.type}}</td>
-                <td>{{lense.name}}</td>
-                <td>{{lense.quality}}</td>
-                <td>{{lense.manufacturingType}}</td>
+                <td>{{ lense.type }}</td>
+                <td>{{ lense.name }}</td>
+                <td>{{ lense.quality }}</td>
+                <td>{{ lense.manufacturingType }}</td>
                 <td>{{ lense.indexPrices }}</td>
-                <td><button class="lenses-wrapper__edit-btn">Edit</button></td>
+                <td><button (click)="openEditModal(editModal, lense.name, lense.quality)" class="lenses-wrapper__edit-btn">Edit</button></td>
                 <td><button (click)="deleteLens(lense.name, lense.quality)" class="lenses-wrapper__delete-btn">Delete</button></td>
             </tr>
         </tbody>
     </table>
+
 </div>
+
+<dialog class="modal" #editModal>
+    <button class="close-modal" (click)="closeModal(editModal)">Close</button>
+
+    <form>
+        <h3>{{ lense.name }}</h3>
+        <label for="type">Typ</label>
+        <input type="text" [(ngModel)]='lense.type' name="type">
+        <label for="name">Namn</label>
+        <input type="text" [(ngModel)]='lense.name' name="name">
+        <label for="quality">Kvalité</label>
+        <input type="number" max="7" min="0" [(ngModel)]="lense.quality" name="quality">
+        <label for="manufacturingType">Tillverknings Typ</label>
+        <input type="text" [(ngModel)]="lense.manufacturingType" name="manufacturingType">
+    </form>
+
+    <button class="save-lens" (click)="updateLens(lense, editModal)">Save</button>
+</dialog>
+
+<dialog class="modal" #addModal>
+    <button class="close-modal" (click)="closeModal(addModal)">Close</button>
+
+    <form>
+        <h3>Fyll i alla fält</h3>
+        <label for="type">Typ</label>
+        <input type="text" name="type">
+        <label for="name">Typ</label>
+        <input type="text" name="name">
+        <label for="quality">Kvalité</label>
+        <input type="number" name="quality">
+        <label for="manufacturingType">Tillverknings Typ</label>
+        <input type="text" name="manufacturingType">
+        <label for="treatment">Behandling</label>
+        <input type="text" name="treatment">
+        <label for="prism">Prisma</label>
+        <input type="number" name="prism">
+        <label for="addition-min">Addition min</label>
+        <input type="number" name="addition-min">
+        <label for="addition-max">Addition max</label>
+        <input type="number" name="addition-max">
+        <div class="checkbox-container-wrapper">
+            <h6>Hur många index har linsen</h6>
+            <div class="checkbox-wrapper">
+                <label for="">1</label>
+                <input type="checkbox">
+                <label for="">2</label>
+                <input type="checkbox">
+                <label for="">3</label>
+                <input type="checkbox">
+            </div>
+        </div>
+    </form>
+
+    <button class="save-lens">Save</button>
+</dialog>

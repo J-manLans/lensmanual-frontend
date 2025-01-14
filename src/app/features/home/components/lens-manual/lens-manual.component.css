@@ -63,7 +63,7 @@ nav ul a:hover {
   position: absolute;
   inset: 86% 0 0 0;
   background-color: var(--synsam-acc);
-  transition: 0.2s;
+  transition: 0.2s ease-in-out;
   transform: translateY(105%);
   transform-origin: bottom;
   z-index: -1;
@@ -72,9 +72,11 @@ nav ul a:hover {
   transform: translate(0);
 }
 .admin__links a {
+  transition: 0.1s ease-in-out;
   color: var(--synsam-acc);
 }
 .admin__links a:hover {
+  transition-delay: 0.3s;
   color: var(--main-dark);
 }
 .admin__links a::after {

@@ -2,7 +2,6 @@
     margin: 2rem auto 2rem auto;
     width: max-content;
 }
-
 .lenses-wrapper__table-header {
     display: flex;
     justify-content: space-between;
@@ -19,4 +18,79 @@ button {
 }
 .lenses-wrapper__delete-btn {
     background-color: red;
+}
+
+/* =================================
+    Modal
+==================================*/
+
+.modal {
+    border-radius: 0.5rem;
+    transition: 0.2s ease-in-out;
+
+    flex-direction: column;
+    max-height: 70%;
+    margin: auto;
+    border: none;
+    background-color: var(--opacity-clr);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeIn 0.4s forwards;
+}
+.modal[open] {
+    display: flex;
+}
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.close-modal {
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: max-content;
+    align-self: flex-end;
+    text-align: center;
+    transition: 0.15s;
+}
+.close-modal:hover {
+    background-color: var(--main-light);
+    color: var(--synsam-acc);
+}
+.save-lens {
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    width: max-content;
+    align-self: flex-start;
+    text-align: center;
+    transition: 0.15s;
+}
+.save-lens:hover {
+    background-color: var(--main-light);
+    color: var(--synsam-acc);
+}
+
+/* =================================
+    Modal form
+==================================*/
+
+.modal form {
+    display: grid;
+    gap: .5rem;
+    padding: 1.5rem;
+    padding-top: 0;
+}
+
+/* =================================
+    Modal add form
+==================================*/
+
+.checkbox-wrapper {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
 }
