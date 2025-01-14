@@ -167,7 +167,7 @@
                 <input type="radio" name="eps" id="eps-yes" value="yes" required [(ngModel)]="eps" #eps="ngModel" class="form-control">
                 <label for="eps-yes">Ja</label>
 
-                <input type="radio" name="eps" id="eps-no" value="no" required [(ngModel)]="eps" class="form-control">
+                <input type="radio" name="eps" id="eps-no" value="no" required [(ngModel)]="eps" #eps="ngModel" class="form-control">
                 <label for="eps-no">Nej</label>
 
             </fieldset>
@@ -200,33 +200,14 @@
             Index prices
         ================================= -->
 
-        <fieldset id="index-required" class="index-fieldset">
+        <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted }">
             <legend>Fyll i pris(erna) för glasets index</legend>
 
-            <div class="input-wrapper">
-                <label for="index-1.74" data-value="Lineis">1.74</label>
-                <input type="number" name="index-1.74" id="index-1.74">
+            <div class="input-wrapper" *ngFor="let index of indices">
+                <label [for]="index.id" data-value="index.label">{{ index.display }}</label>
+                <input type="number" [name]="index.id" [id]="index.id">
             </div>
 
-            <div class="input-wrapper">
-                <label for="index-1.67" data-value="Stylis">1.67</label>
-                <input type="number" name="index-1.67" id="index-1.67">
-            </div>
-
-            <div class="input-wrapper">
-                <label for="index-1.6" data-value="Ormix">1.6</label>
-                <input type="number" name="index-1.6" id="index-1.6">
-            </div>
-
-            <div class="input-wrapper">
-                <label for="index-1.5-orma" data-value="Orma">1.5 (orma)</label>
-                <input type="number" name="index-1.5-orma" id="index-1.5-orma">
-            </div>
-
-            <div class="input-wrapper">
-                <label for="index-1.5-organic" data-value="Organic">1.5 (organic)</label>
-                <input type="number" name="index-1.5-organic" id="index-1.5-organic">
-            </div>
         </fieldset>
 
         <button type="submit" class="add-btn" [ngClass]="{ 'invalid-add-btn': form.invalid }">{{ form.invalid ? 'Fyll i alla fält' : 'Lägg Till' }}</button>
