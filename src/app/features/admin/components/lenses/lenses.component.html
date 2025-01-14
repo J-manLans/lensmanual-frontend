@@ -152,7 +152,8 @@
 
         <fieldset class="treatment-fieldset">
             <!-- TODO: need some extra doings in js, should be added to an array -->
-            <legend>Behandling</legend>
+            <legend>Behandlingar</legend>
+            <label for="treatment">Beläggning</label>
             <select name="treatment" id="treatment" required [(ngModel)]="lense.treatment" #treatment="ngModel" class="form-control" [ngClass]="{ 'is-invalid': treatment.invalid && treatment.touched }">
                 <option class="hidden-option" disabled selected></option>
                 <option>CSP + UV</option>
@@ -200,12 +201,12 @@
             Index prices
         ================================= -->
 
-        <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted }">
+        <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted && !hasValidIndexValue }">
             <legend>Fyll i pris(erna) för glasets index</legend>
 
             <div class="input-wrapper" *ngFor="let index of indices">
                 <label [for]="index.id" data-value="index.label">{{ index.display }}</label>
-                <input type="number" [name]="index.id" [id]="index.id">
+                <input type="number" [name]="index.id" [id]="index.id" [(ngModel)]="index.value">
             </div>
 
         </fieldset>

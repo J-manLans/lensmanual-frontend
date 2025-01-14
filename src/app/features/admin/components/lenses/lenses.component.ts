@@ -23,7 +23,8 @@ export class LensesComponent {
     { id: '1.6', label: 'Ormix', display: '1.6', value: null },
     { id: '1.5-orma', label: 'Orma', display: '1.5 (orma)', value: null },
     { id: '1.5-organic', label: 'Organic', display: '1.5 (organic)', value: null },
-  ];
+  ]
+  hasValidIndexValue: boolean = false;
 
   ngOnInit(): void {
     this.loadLenses()
@@ -149,11 +150,13 @@ export class LensesComponent {
   /* ===== Add form methods ===== */
 
   addLens(form: any): void {
-    this.submitted = true
+    this.hasValidIndexValue = this.hasAtLeastOneIndexValue()
     console.log('Hurray');
   }
 
   hasAtLeastOneIndexValue(): boolean {
+    console.log(2);
+
     return this.indices.some(index => index.value != null && index.value !== '');
   }
 }
