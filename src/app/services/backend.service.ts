@@ -29,4 +29,8 @@ export class BackendService {
     return this.http.patch<any>(`${this.apiUrl}/lenses/${lensName}/${quality}`, body)
   }
 
+  addLense(lense: Object) : Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/lenses`, lense)
+  }
+
 }

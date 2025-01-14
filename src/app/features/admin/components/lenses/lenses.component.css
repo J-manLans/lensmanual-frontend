@@ -17,7 +17,7 @@ button {
     background-color: var(--synsam-acc-blue);
 }
 .lenses-wrapper__delete-btn {
-    background-color: red;
+    background-color: var(--error-clr);
 }
 
 /* =================================
@@ -57,22 +57,20 @@ button {
     text-align: center;
     transition: 0.15s;
 }
-.close-modal:hover {
+.close-modal:hover,
+.add-btn:hover {
     background-color: var(--main-light);
     color: var(--synsam-acc);
 }
-.save-lens {
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 0;
-    width: max-content;
-    align-self: flex-start;
+.add-btn {
     text-align: center;
-    transition: 0.15s;
 }
-.save-lens:hover {
-    background-color: var(--main-light);
-    color: var(--synsam-acc);
+.invalid-add-btn,
+.invalid-add-btn:hover {
+    background-color: darkgray;
+    color: lightslategray;
 }
+
 
 /* =================================
     Modal form
@@ -81,16 +79,54 @@ button {
 .modal form {
     display: grid;
     gap: .5rem;
+    width: 20rem;
     padding: 1.5rem;
     padding-top: 0;
+
+    input,
+    select,
+    fieldset {
+        border-radius: .3rem;
+    }
 }
 
 /* =================================
     Modal add form
 ==================================*/
 
-.checkbox-wrapper {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-around;
+.hidden-option {
+    display: none;
+}
+.treatment-fieldset {
+    padding: .5rem;
+
+    #treatment {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+
+    .eps-fieldset {
+        display: flex;
+        gap: .6rem;
+        padding-left: .5rem;
+    }
+}
+.index-fieldset, .strengths-fieldset {
+    padding: .5rem;
+    display:block;
+
+    .input-wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        input {
+            width: 8rem;
+        }
+    }
+    .input-wrapper:not(:last-child) {
+        padding-bottom: .5rem;
+    }
+}
+.is-invalid {
+    border-color: var(--error-clr);
 }

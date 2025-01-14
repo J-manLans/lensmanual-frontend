@@ -12,10 +12,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class LensesComponent {
   lenses: Lense[] = []
+  lense: Lense = this.initializeVitalFieldsForLense() as Lense;
   backendService: BackendService = inject(BackendService)
-  lense: Lense = {} as Lense;
-  lensName: string = '';
-  quality: number = 0;
+  orgLensName: string = '';
+  orgQuality: number = 0;
+  submitted: boolean = false;
+  indices = [
+    { id: '1.74', label: 'Lineis', display: '1.74', value: null },
+    { id: '1.67', label: 'Stylis', display: '1.67', value: null },
+    { id: '1.6', label: 'Ormix', display: '1.6', value: null },
+    { id: '1.5-orma', label: 'Orma', display: '1.5 (orma)', value: null },
+    { id: '1.5-organic', label: 'Organic', display: '1.5 (organic)', value: null },
+  ];
 
   ngOnInit(): void {
     this.loadLenses()
@@ -58,6 +66,17 @@ export class LensesComponent {
     });
   }
 
+  private loadLense(lensName: string, quality: number) {
+    this.backendService.getLense(lensName, quality).subscribe({
+      next: (lense) => {
+        this.lense = lense
+      },
+      error: (error) => {
+        console.error(`An error occurred when fetching lense ${lensName}: ${error.message}`);
+      }
+    })
+  }
+
   deleteLens(lensName: string, quality: number) {
     this.backendService.deleteLense(lensName, quality).subscribe({
       next: (lense) => {
@@ -70,7 +89,7 @@ export class LensesComponent {
     });
   }
 
-  editLense(lensName: string, quality: number, body: Object) {
+  private editLense(lensName: string, quality: number, body: Object) {
     this.backendService.updateLense(lensName, quality, body).subscribe({
       next: (lense) => {
         console.log(`Linsen ${lense.name} ändrades.`);
@@ -86,39 +105,57 @@ export class LensesComponent {
     Component Methods
   ======================================*/
 
-  openEditModal(modal: HTMLDialogElement, lensName: string, quality: number) {
-    // Save the composite key for changing the correct lense in case name
-    // or quality will be edited
-    this.lensName = lensName
-    this.quality = quality
-
-    this.backendService.getLense(lensName, quality).subscribe({
-      next: (lense) => {
-        this.lense = lense
-        console.log(lense.staticCorrectionDetails.addition.min);
-
-        modal.showModal()
+  private initializeVitalFieldsForLense(): Object {
+    return {
+      staticCorrectionDetails: {
+        prism: null,
+        addition: { min: null, max: null }
       },
-      error: (error) => {
-        console.error(`An error occurred when fetching lense ${lensName}: ${error.message}`);
-      }
-    })
+      indexData: [
+        {
+          price: null,
+          diameterStrengthBounds: []
+        }
+      ]
+    }
+  }
+
+  openModal(modal: HTMLDialogElement, lensName: string, quality: number): void;
+  openModal(modal: HTMLDialogElement, lensName?: string, quality?: number): void;
+
+  openModal(modal: HTMLDialogElement, lensName: string, quality: number ): void {
+    if (lensName && quality) {  // For the edit modal
+      // Save the composite key for changing the correct lense in case name
+      // or quality will be edited
+      this.orgLensName = lensName
+      this.orgQuality = quality
+
+      this.loadLense(lensName, quality)
+    }
+
+    modal.showModal()
   }
 
   closeModal(modal: HTMLDialogElement) {
     modal.close()
+    this.lense = this.initializeVitalFieldsForLense() as Lense
   }
 
   updateLens(lense: Lense, modal: HTMLDialogElement) {
-    this.editLense(this.lensName, this.quality, lense)
+    this.editLense(this.orgLensName, this.orgQuality, lense)
     modal.close()
   }
 
-  openAddModal(modal: HTMLDialogElement) {
-    modal.showModal()
+  /* ===== Add form methods ===== */
+
+  addLens(form: any): void {
+    this.submitted = true
+    console.log('Hurray');
   }
 
-  addLens() {
-
+  hasAtLeastOneIndexValue(): boolean {
+    return this.indices.some(index => index.value != null && index.value !== '');
   }
 }
+
+
