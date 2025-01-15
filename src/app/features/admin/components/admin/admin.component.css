@@ -21,6 +21,7 @@ header {
 
         a {
             color: var(--main-dark);
+            transition-delay: .2s;
         }
     }
 

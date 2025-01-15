@@ -17,6 +17,7 @@
                 <th class="lenses-wrapper__lens-quality">Kvalité</th>
                 <th class="lenses-wrapper__lens-manufacturing-type">Tillverknings Typ</th>
                 <th class="lenses-wrapper__lens-index-price">Index Pris</th>
+                <th class="lenses-wrapper__lens-index-price">Har diametrar</th>
                 <th class="lenses-wrapper__lens-edit"></th>
                 <th class="lenses-wrapper__lens-delete"></th>
             </tr>
@@ -29,6 +30,7 @@
                 <td>{{ lense.quality }}</td>
                 <td>{{ lense.manufacturingType }}</td>
                 <td>{{ lense.indexPrices }}</td>
+                <td>{{ lense.indexData[0].diameterStrengthBounds !== null }}</td>
                 <td><button (click)="openModal(editModal, lense.name, lense.quality)" class="lenses-wrapper__edit-btn">Edit</button></td>
                 <td><button (click)="deleteLens(lense.name, lense.quality)" class="lenses-wrapper__delete-btn">Delete</button></td>
             </tr>
@@ -151,7 +153,6 @@
         ================================= -->
 
         <fieldset class="treatment-fieldset">
-            <!-- TODO: need some extra doings in js, should be added to an array -->
             <legend>Behandlingar</legend>
             <label for="treatment">Beläggning</label>
             <select name="treatment" id="treatment" required [(ngModel)]="selectedTreatment" #treatment="ngModel" [ngClass]="{ 'is-invalid': treatment.invalid && treatment.touched }">
@@ -200,8 +201,6 @@
         <!-- ================================
             Index prices
         ================================= -->
-
-        <!-- TODO: Add prices and index name here...or in backend? -->
 
         <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted && !hasAtLeastOneIndexValue()}">
             <legend>Fyll i pris(erna) för glasets index</legend>

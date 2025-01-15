@@ -26,7 +26,7 @@ export class LensesComponent {
     { id: '1.5-organic', label: 'Organic', display: '1.5 (organic)', value: null },
   ]
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadLenses()
   }
 
@@ -34,7 +34,7 @@ export class LensesComponent {
     Server Methods
   ======================================*/
 
-  private loadLenses(): void {
+  private loadLenses() {
     this.backendService.getAllLenses().subscribe({
       next: (lenses: Lense[]) => {
         this.lenses = lenses
@@ -55,15 +55,18 @@ export class LensesComponent {
     })
   }
 
-  private extractIndexPrices(): void {
+  private extractIndexPrices() {
     this.lenses.forEach(lense => {
-      console.log(lense.name);
-
       lense.indexPrices = lense.indexData
       .map((indexData) => {
         const price = indexData.price
-        const index = indexData.diameterStrengthBounds
-          .map(dsb => dsb.index)
+
+        if (indexData.diameterStrengthBounds === null) {
+          const indexId = this.indexes.find(index => index.label === indexData.name)!.id;
+          return `${indexId}: ${price}`
+        }
+
+        const index = indexData.diameterStrengthBounds.map(dsb => dsb.index)
           return `${index}: ${price}`
       }).join(', ')
     });
@@ -103,7 +106,6 @@ export class LensesComponent {
       }
     });
   }
-
 
   addLens(lense: any) {
     this.backendService.addLense(lense).subscribe({
@@ -172,12 +174,13 @@ export class LensesComponent {
 
   /* ===== Add form methods ===== */
 
-  submitLens(form: NgForm): void {
+  //TODO: when adding a lens it should be added to a dimension...based on its quality and type, or i just do a manual edit in the lens diameter data here on the page!!!
+  submitLens(form: NgForm) {
     console.log(this.lense);
 
     if (form.valid) {
       this.lense.treatment.push(this.selectedTreatment)
-      if (this.eps==='EPS') this.lense.treatment.push(this.eps)
+      if (this.eps === 'EPS') this.lense.treatment.push(this.eps)
 
       this.indexes.forEach((index, i) => {
         if (this.indexes[i].value !== null) {
