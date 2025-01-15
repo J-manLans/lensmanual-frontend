@@ -16,29 +16,36 @@
                         kollar i telefonen. Speciellt bra för unga med höga styrkor som annars skulle få
                         mer distortion i det läget.
                     </li>
-                    <li>
-                        Asfäriska glas gör glasen betydligt tunnare och plattare. Höga
-                        styrkor förstorar samt förminskar ögonen genom glaset.
-                        Asfäriska glas minskar storleksförändringen, ögonen får helt
-                        enkelt behålla en så naturlig storlek som möjligt. De ger en
-                        mer korrekt avbildning av omvärlden och du får bättre
-                        synskärpa utåt i glasets kanter.
-                    </li>
                 </div>
             </ul>
         </div>
 
     </div>
 
-    <div class="glasses__quality">
-        <div id="enkel-7"></div>
-        <div id="enkel-6"></div>
-        <div id="enkel-5"></div>
-        <div id="enkel-4"></div>
-        <div id="enkel-3"></div>
-        <div id="enkel-2"></div>
-        <div id="enkel-1"></div>
-        <div id="enkel-0.5"></div>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="table-wrapper__lens-type">Typ</th>
+                <th class="table-wrapper__lens-name">Linsnamn</th>
+                <th class="table-wrapper__lens-quality">Kvalité</th>
+                <th class="table-wrapper__lens-manufacturing-type">Tillverknings Typ</th>
+                <th class="table-wrapper__lens-index-price">Index Pris</th>
+                <th class="table-wrapper__lens-edit"><em>Behandling</em></th>
+            </tr>
+        </thead>
+        <!-- The table body will be populated by main.js -->
+        <tbody id="table-wrapper__lens_data">
+            <tr *ngFor="let lense of lenses">
+              <ng-container *ngIf="lense.type === 'Enkelslipade'">
+                <td>{{ lense.type }}</td>
+                <td>{{ lense.name }}</td>
+                <td>{{ lense.quality }}</td>
+                <td>{{ lense.manufacturingType }}</td>
+                <td>{{ lense.treatment }}</td>
+                <td>{{ lense.indexPrices }}</td>
+              </ng-container>
+            </tr>
+        </tbody>
+    </table>
 
 </article>

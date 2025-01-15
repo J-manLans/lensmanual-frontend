@@ -11,17 +11,31 @@
 
   </div>
 
-  <!-- TODO: show each lens data in each of these modules...or do the admin page first, it's more familiar territory -->
+  <table>
+    <thead>
+        <tr>
+            <th class="table-wrapper__lens-type">Typ</th>
+            <th class="table-wrapper__lens-name">Linsnamn</th>
+            <th class="table-wrapper__lens-quality">Kvalité</th>
+            <th class="table-wrapper__lens-manufacturing-type">Tillverknings Typ</th>
+            <th class="table-wrapper__lens-index-price">Index Pris</th>
+            <th class="table-wrapper__lens-edit"><em>Behandling</em></th>
+        </tr>
+    </thead>
+    <!-- The table body will be populated by main.js -->
+    <tbody id="table-wrapper__lens_data">
+        <tr *ngFor="let lense of lenses">
+          <ng-container *ngIf="lense.type === 'Progressiva'">
+            <td>{{ lense.type }}</td>
+            <td>{{ lense.name }}</td>
+            <td>{{ lense.quality }}</td>
+            <td>{{ lense.manufacturingType }}</td>
+            <td>{{ lense.treatment }}</td>
+            <td>{{ lense.indexPrices }}</td>
 
-  <div class="glasses__quality">
-    <div id="prog-7"></div>
-    <div id="prog-6"></div>
-    <div id="prog-5"></div>
-    <div id="prog-4"></div>
-    <div id="prog-3"></div>
-    <div id="prog-2"></div>
-    <div id="prog-1"></div>
-    <div id="prog-0.5"></div>
-  </div>
+          </ng-container>
+        </tr>
+    </tbody>
+</table>
 
 </article>
