@@ -57,6 +57,8 @@ export class LensesComponent {
 
   private extractIndexPrices(): void {
     this.lenses.forEach(lense => {
+      console.log(lense.name);
+
       lense.indexPrices = lense.indexData
       .map((indexData) => {
         const price = indexData.price
@@ -171,6 +173,8 @@ export class LensesComponent {
   /* ===== Add form methods ===== */
 
   submitLens(form: NgForm): void {
+    console.log(this.lense);
+
     if (form.valid) {
       this.lense.treatment.push(this.selectedTreatment)
       if (this.eps==='EPS') this.lense.treatment.push(this.eps)

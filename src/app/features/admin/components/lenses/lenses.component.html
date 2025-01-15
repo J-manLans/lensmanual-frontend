@@ -188,12 +188,12 @@
 
             <div class="input-wrapper">
                 <label for="addition-min">Addition min</label>
-                <input #input type="number" step="0.01" min="0" name="addition-min" id="addition-min" required [(ngModel)]="lense.staticCorrectionDetails.addition.min" #additionMin="ngModel" [ngClass]="{ 'is-invalid': additionMin.invalid && additionMin.touched }">
+                <input #input type="number" step="0.01" min="0" name="addition-min" id="addition-min" [(ngModel)]="lense.staticCorrectionDetails.addition.min" >
             </div>
 
             <div class="input-wrapper">
                 <label for="addition-max">Addition max</label>
-                <input #input type="number" step="0.01" min="0" name="addition-max" id="addition-max" required [(ngModel)]="lense.staticCorrectionDetails.addition.max" #additionMax="ngModel" [ngClass]="{ 'is-invalid': additionMax.invalid && additionMax.touched }">
+                <input #input type="number" step="0.01" min="0" name="addition-max" id="addition-max"  [(ngModel)]="lense.staticCorrectionDetails.addition.max" >
             </div>
         </fieldset>
 
