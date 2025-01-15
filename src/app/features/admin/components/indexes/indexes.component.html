@@ -1,0 +1,25 @@
+<div class="table-wrapper">
+
+    <div class="table-wrapper__table-header">
+        <h2>Index</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="table-wrapper__dsbNr">#</th>
+                <th class="table-wrapper__index-type">Namn</th>
+                <th class="table-wrapper__index-quality">Index</th>
+            </tr>
+        </thead>
+        <!-- The table body will be populated by main.js -->
+        <tbody id="table-wrapper__index_data">
+            <tr *ngFor="let index of indexes, let i = index">
+                <td>{{ 1 + i }}</td>
+                <td>{{ index.index }}</td>
+                <td>{{ index.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

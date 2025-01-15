@@ -106,7 +106,13 @@ export class LensesComponent {
 
   /* ===== Edit a lense ===== */
 
-  private editLense(lensName: string, quality: number, body: Object) {
+  private editLense(lensName: string, quality: number, body: Lense) {
+    body.indexData.forEach(indexData => {
+      if (indexData.diameterStrengthBounds === null) {
+        indexData.diameterStrengthBounds = []
+      }
+    });
+
     this.backendService.editLense(lensName, quality, body).subscribe({
       next: (lense) => {
         console.log(`Linsen ${lense.name} ändrades.`);
@@ -180,16 +186,18 @@ export class LensesComponent {
     this.lense = this.initializeVitalFieldsForLense() as Lense
   }
 
-  updateLens(lense: Lense, modal: HTMLDialogElement) {
+  updateLens(lense: Lense, modal: HTMLDialogElement, form: NgForm) {
     this.editLense(this.orgLensName, this.orgQuality, lense)
     modal.close()
+    form.resetForm()
   }
 
   /* ===== Add form methods ===== */
 
-  //TODO: when adding a lens it should be added to a dimension...based on its quality and type, or i just do a manual edit in the lens diameter data here on the page!!! So quick add the diameters and index. fix a patch method for diameters and then add some more documents and  video, no time for any other shit
-  submitLens(form: NgForm) {
-    console.log(this.lense);
+  submitLens(form: NgForm, modal: HTMLDialogElement) {
+
+    console.log(form.valid);
+
 
     if (form.valid) {
       this.lense.treatment.push(this.selectedTreatment)
@@ -206,7 +214,7 @@ export class LensesComponent {
       });
 
       this.addLens(this.lense)
-
+      modal.close()
     } else {
       form.control.markAllAsTouched();
     }

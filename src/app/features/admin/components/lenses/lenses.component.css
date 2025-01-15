@@ -1,28 +1,3 @@
-.lenses-wrapper {
-    margin: 2rem auto 2rem auto;
-    width: max-content;
-}
-.lenses-wrapper__table-header {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-
-}
-.lenses-wrapper__lens-diameter{
-    text-align: center;
-}
-button {
-    background-color: var(--synsam-acc);
-    padding: .2rem .4rem;
-    border-radius: .3rem;
-}
-.lenses-wrapper__edit-btn {
-    background-color: var(--synsam-acc-blue);
-}
-.lenses-wrapper__delete-btn {
-    background-color: var(--error-clr);
-}
-
 /* =================================
     Modal
 ==================================*/
@@ -61,11 +36,13 @@ button {
     transition: 0.15s;
 }
 .close-modal:hover,
-.add-btn:hover {
+.add-btn:hover,
+.save-btn:hover {
     background-color: var(--main-light);
     color: var(--synsam-acc);
 }
-.add-btn {
+.add-btn,
+.save-btn {
     text-align: center;
 }
 .invalid-add-btn,

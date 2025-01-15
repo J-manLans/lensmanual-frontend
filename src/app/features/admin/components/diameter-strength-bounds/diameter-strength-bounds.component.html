@@ -1,0 +1,43 @@
+<div class="table-wrapper">
+
+    <div class="table-wrapper__table-header">
+        <h2>Diametrar</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="table-wrapper__dsbNr">#</th>
+                <th class="table-wrapper__lens-type">Typ</th>
+                <th class="table-wrapper__lens-quality">Kvalité</th>
+                <th class="table-wrapper__lens-identifiers">Linser</th>
+                <th class="table-wrapper__dsb-edit"></th>
+            </tr>
+        </thead>
+        <!-- The table body will be populated by main.js -->
+        <tbody id="table-wrapper__dsb_data">
+            <tr *ngFor="let oneDsb of dsb; let i = index">
+                <td>{{1 + i}}</td>
+                <td>{{ oneDsb.type }}</td>
+                <td>{{ oneDsb.quality }}</td>
+                <td>{{ oneDsb.identifiers.join(', ') }}</td>
+                <td><button class="table-wrapper__edit-btn" (click)="openModal(editModal, oneDsb.type, oneDsb.quality)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<dialog class="modal" #editModal>
+    <button class="close-modal" (click)="closeModal(editModal, form)">Stäng</button>
+
+    <form #form="ngForm" (ngSubmit)="updateDbs(editModal, form)">
+        <h3>Lägg till lins till {{ oneDsb.type }} {{ oneDsb.quality }}</h3>
+
+            <label for="edit-lenses">Linsnamn</label>
+            <input type="string" min="0" name="edit-lenses" id="edit-lenses" required [(ngModel)]="lensNameToAdd">
+
+        <button type="submit" class="save-btn" [disabled]="form.invalid">Spara</button>
+    </form>
+
+</dialog>

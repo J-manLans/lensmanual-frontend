@@ -1,0 +1,116 @@
+/* =================================
+    Modal
+==================================*/
+
+.modal {
+    border-radius: 0.5rem;
+    transition: 0.2s ease-in-out;
+
+    flex-direction: column;
+    max-height: 70%;
+    margin: auto;
+    border: none;
+    background-color: var(--opacity-clr);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeIn 0.4s forwards;
+}
+.modal[open] {
+    display: flex;
+}
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.close-modal {
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: max-content;
+    align-self: flex-end;
+    text-align: center;
+    transition: 0.15s;
+}
+.close-modal:hover,
+.add-btn:hover,
+.save-btn:hover {
+    background-color: var(--main-light);
+    color: var(--synsam-acc);
+}
+.add-btn, .save-btn  {
+    text-align: center;
+}
+.invalid-add-btn,
+.invalid-add-btn:hover {
+    background-color: darkgray;
+    color: lightslategray;
+}
+
+
+/* =================================
+    Modal form
+==================================*/
+
+.modal form {
+    display: grid;
+
+    gap: .5rem;
+    width: 25rem;
+    padding: 1.5rem;
+    padding-top: 0;
+
+    input,
+    select,
+    fieldset {
+        border-radius: .3rem;
+    }
+}
+
+/* =================================
+    Modal add form
+==================================*/
+
+.hidden-option {
+    display: none;
+}
+.treatment-fieldset {
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    #treatment {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+
+    .eps-fieldset {
+        display: flex;
+        gap: .6rem;
+        padding-left: .5rem;
+        padding-bottom: .25rem;
+    }
+}
+.index-fieldset, .strengths-fieldset {
+    padding: .5rem;
+    display:block;
+
+    .input-wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        input {
+            width: 8rem;
+        }
+    }
+    .input-wrapper:not(:last-child) {
+        padding-bottom: .5rem;
+    }
+}
+.is-invalid {
+    border-color: var(--error-clr);
+}
