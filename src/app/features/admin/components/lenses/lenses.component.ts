@@ -195,10 +195,6 @@ export class LensesComponent {
   /* ===== Add form methods ===== */
 
   submitLens(form: NgForm, modal: HTMLDialogElement) {
-
-    console.log(form.valid);
-
-
     if (form.valid) {
       this.lense.treatment.push(this.selectedTreatment)
       if (this.eps === 'EPS') this.lense.treatment.push(this.eps)

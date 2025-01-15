@@ -93,12 +93,12 @@
 
             <div *ngIf="lense.type !== 'Enkelslipade'" class="input-wrapper">
                 <label for="edit-addition-min">Addition min</label>
-                <input type="number" min="0" name="addition-min" id="edit-addition-min" [(ngModel)]="lense.staticCorrectionDetails.addition.min">
+                <input type="number" min="0" name="addition-min" id="edit-addition-min" [disabled]="lense.type === 'Enkelslipade'" [(ngModel)]="lense.staticCorrectionDetails.addition.min">
             </div>
 
             <div *ngIf="lense.type !== 'Enkelslipade'" class="input-wrapper">
                 <label for="edit-addition-max">Addition max</label>
-                <input type="number" min="0" name="addition-max" id="edit-addition-max" [(ngModel)]="lense.staticCorrectionDetails.addition.max">
+                <input type="number" min="0" name="addition-max" id="edit-addition-max" [disabled]="lense.type === 'Enkelslipade'" [(ngModel)]="lense.staticCorrectionDetails.addition.max">
             </div>
         </fieldset>
 

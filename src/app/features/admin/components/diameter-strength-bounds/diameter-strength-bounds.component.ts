@@ -100,9 +100,6 @@ export class DiameterStrengthBoundsComponent {
   }
 
   closeModal(modal: HTMLDialogElement, form: NgForm) {
-
-    console.log(this.oneDsb.identifiers);
-
     form.resetForm()
     modal.close()
     this.oneDsb = this.initializeVitalFieldsForDsb() as DiameterStrengthBound
