@@ -78,6 +78,7 @@ button {
 
 .modal form {
     display: grid;
+
     gap: .5rem;
     width: 20rem;
     padding: 1.5rem;
@@ -112,6 +113,7 @@ button {
         display: flex;
         gap: .6rem;
         padding-left: .5rem;
+        padding-bottom: .25rem;
     }
 }
 .index-fieldset, .strengths-fieldset {

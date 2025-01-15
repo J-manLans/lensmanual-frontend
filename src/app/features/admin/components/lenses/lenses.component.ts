@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Lense } from '../../../../models/lens';
 import { BackendService } from '../../../../services/backend.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-lenses',
@@ -16,15 +16,15 @@ export class LensesComponent {
   backendService: BackendService = inject(BackendService)
   orgLensName: string = '';
   orgQuality: number = 0;
-  submitted: boolean = false;
-  indices = [
+  selectedTreatment: any;
+  eps: string = "";
+  indexes = [
     { id: '1.74', label: 'Lineis', display: '1.74', value: null },
     { id: '1.67', label: 'Stylis', display: '1.67', value: null },
     { id: '1.6', label: 'Ormix', display: '1.6', value: null },
     { id: '1.5-orma', label: 'Orma', display: '1.5 (orma)', value: null },
     { id: '1.5-organic', label: 'Organic', display: '1.5 (organic)', value: null },
   ]
-  hasValidIndexValue: boolean = false;
 
   ngOnInit(): void {
     this.loadLenses()
@@ -91,7 +91,7 @@ export class LensesComponent {
   }
 
   private editLense(lensName: string, quality: number, body: Object) {
-    this.backendService.updateLense(lensName, quality, body).subscribe({
+    this.backendService.editLense(lensName, quality, body).subscribe({
       next: (lense) => {
         console.log(`Linsen ${lense.name} ändrades.`);
         this.loadLenses();
@@ -102,12 +102,26 @@ export class LensesComponent {
     });
   }
 
+
+  addLens(lense: any) {
+    this.backendService.addLense(lense).subscribe({
+      next: (lense) => {
+        console.log(`Linsen ${lense.name} lades till.`);
+        this.loadLenses();
+      },
+      error: (error) => {
+        console.error(`An error occurred when adding lense ${lense.name}: ${error.message}`);
+      }
+    });
+  }
+
   /*======================================
     Component Methods
   ======================================*/
 
   private initializeVitalFieldsForLense(): Object {
     return {
+      treatment: [],
       staticCorrectionDetails: {
         prism: null,
         addition: { min: null, max: null }
@@ -137,7 +151,14 @@ export class LensesComponent {
     modal.showModal()
   }
 
-  closeModal(modal: HTMLDialogElement) {
+  closeModal(modal: HTMLDialogElement, form: NgForm): void;
+  closeModal(modal: HTMLDialogElement, form?: NgForm): void;
+
+  closeModal(modal: HTMLDialogElement, form: NgForm) {
+    if (form) {
+      form.reset()
+    }
+
     modal.close()
     this.lense = this.initializeVitalFieldsForLense() as Lense
   }
@@ -149,15 +170,30 @@ export class LensesComponent {
 
   /* ===== Add form methods ===== */
 
-  addLens(form: any): void {
-    this.hasValidIndexValue = this.hasAtLeastOneIndexValue()
-    console.log('Hurray');
+  submitLens(form: NgForm): void {
+    if (form.valid) {
+      this.lense.treatment.push(this.selectedTreatment)
+      if (this.eps==='EPS') this.lense.treatment.push(this.eps)
+
+      this.indexes.forEach((index, i) => {
+        if (this.indexes[i].value !== null) {
+          this.lense.indexData[i] = {
+            name: index.label,
+            price: index.value,
+            diameterStrengthBounds: []
+          };
+        }
+      });
+
+      this.addLens(this.lense)
+
+    } else {
+      form.control.markAllAsTouched();
+    }
   }
 
   hasAtLeastOneIndexValue(): boolean {
-    console.log(2);
-
-    return this.indices.some(index => index.value != null && index.value !== '');
+    return this.indexes.some(index => index.value !== null && index.value !== 0);
   }
 }
 

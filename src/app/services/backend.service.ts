@@ -25,7 +25,7 @@ export class BackendService {
     return this.http.delete<any>(`${this.apiUrl}/lenses/${lensName}/${quality}`)
   }
 
-  updateLense(lensName: string, quality: number, body: Object) : Observable<any> {
+  editLense(lensName: string, quality: number, body: Object) : Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/lenses/${lensName}/${quality}`, body)
   }
 

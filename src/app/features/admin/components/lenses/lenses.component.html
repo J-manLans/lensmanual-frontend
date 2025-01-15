@@ -106,9 +106,9 @@
 <!-- Add Modal -->
 
 <dialog class="modal" #addModal>
-    <button class="close-modal" (click)="closeModal(addModal)">Stäng</button>
+    <button class="close-modal" (click)="closeModal(addModal, form)">Stäng</button>
 
-    <form #form="ngForm" (ngSubmit)="addLens(form)">
+    <form #form="ngForm" (ngSubmit)="submitLens(form)">
         <h3>Fyll i alla fält</h3>
 
         <!-- ================================
@@ -116,7 +116,7 @@
         ================================= -->
 
         <label for="type">Typ</label>
-        <select name="type" id="type" required [(ngModel)]="lense.type" #type="ngModel" class="form-control" [ngClass]="{ 'is-invalid': type.invalid && type.touched }">
+        <select name="type" id="type" required [(ngModel)]="lense.type" #type="ngModel" [ngClass]="{ 'is-invalid': type.invalid && type.touched }">
             <option class="hidden-option" disabled selected></option>
             <option>Progressiva</option>
             <option>Enkelslipade</option>
@@ -124,10 +124,10 @@
 
         <label for="name">Namn</label>
         <input type="text" autocomplete="off" name="name" id="name" required [(ngModel)]="lense.name"
-        #name="ngModel" class="form-control" [ngClass]="{ 'is-invalid': name.invalid && name.touched }">
+        #name="ngModel" [ngClass]="{ 'is-invalid': name.invalid && name.touched }">
 
         <label for="quality">Kvalité</label>
-        <select name="quality" id="quality" required [(ngModel)]="lense.quality" #quality="ngModel" class="form-control" [ngClass]="{ 'is-invalid': quality.invalid && quality.touched }">
+        <select name="quality" id="quality" required [(ngModel)]="lense.quality" #quality="ngModel" [ngClass]="{ 'is-invalid': quality.invalid && quality.touched }">
             <option class="hidden-option" disabled selected></option>
             <option value="7">7</option>
             <option value="6">6</option>
@@ -140,7 +140,7 @@
         </select>
 
         <label for="manufacturingType">Tillverknings Typ</label>
-        <select name="manufacturingType" id="manufacturingType" required [(ngModel)]="lense.manufacturingType" #manufacturingType="ngModel" class="form-control" [ngClass]="{ 'is-invalid': manufacturingType.invalid && manufacturingType.touched }">
+        <select name="manufacturingType" id="manufacturingType" required [(ngModel)]="lense.manufacturingType" #manufacturingType="ngModel" [ngClass]="{ 'is-invalid': manufacturingType.invalid && manufacturingType.touched }">
             <option class="hidden-option" disabled selected></option>
             <option>RX</option>
             <option>Stock</option>
@@ -154,7 +154,7 @@
             <!-- TODO: need some extra doings in js, should be added to an array -->
             <legend>Behandlingar</legend>
             <label for="treatment">Beläggning</label>
-            <select name="treatment" id="treatment" required [(ngModel)]="lense.treatment" #treatment="ngModel" class="form-control" [ngClass]="{ 'is-invalid': treatment.invalid && treatment.touched }">
+            <select name="treatment" id="treatment" required [(ngModel)]="selectedTreatment" #treatment="ngModel" [ngClass]="{ 'is-invalid': treatment.invalid && treatment.touched }">
                 <option class="hidden-option" disabled selected></option>
                 <option>CSP + UV</option>
                 <option>CEP</option>
@@ -162,13 +162,13 @@
                 <option value="x">Ingen behandling</option>
             </select>
 
-            <fieldset class="eps-fieldset"  [ngClass]="{ 'is-invalid': submitted && eps.invalid }">
+            <fieldset class="eps-fieldset"  [ngClass]="{ 'is-invalid': form.submitted && epsModel.invalid}">
                 <legend>Eye Protection System</legend>
 
-                <input type="radio" name="eps" id="eps-yes" value="yes" required [(ngModel)]="eps" #eps="ngModel" class="form-control">
+                <input type="radio" name="eps" id="eps-yes" value="EPS" required [(ngModel)]="eps" #epsModel="ngModel" >
                 <label for="eps-yes">Ja</label>
 
-                <input type="radio" name="eps" id="eps-no" value="no" required [(ngModel)]="eps" #eps="ngModel" class="form-control">
+                <input type="radio" name="eps" id="eps-no" value="no" required [(ngModel)]="eps" >
                 <label for="eps-no">Nej</label>
 
             </fieldset>
@@ -183,17 +183,17 @@
 
             <div class="input-wrapper">
                 <label for="prism">Prisma</label>
-                <input #input type="number" min="0" name="prism" id="prism" required [(ngModel)]="lense.staticCorrectionDetails.prism" #prism="ngModel" class="form-control" [ngClass]="{ 'is-invalid': prism.invalid && prism.touched }">
+                <input #input type="number" min="0" name="prism" id="prism" required [(ngModel)]="lense.staticCorrectionDetails.prism" #prism="ngModel" [ngClass]="{ 'is-invalid': prism.invalid && prism.touched }">
             </div>
 
             <div class="input-wrapper">
                 <label for="addition-min">Addition min</label>
-                <input #input type="number" step="0.01" min="0" name="addition-min" id="addition-min" required [(ngModel)]="lense.staticCorrectionDetails.addition.min" #additionMin="ngModel" class="form-control" [ngClass]="{ 'is-invalid': additionMin.invalid && additionMin.touched }">
+                <input #input type="number" step="0.01" min="0" name="addition-min" id="addition-min" required [(ngModel)]="lense.staticCorrectionDetails.addition.min" #additionMin="ngModel" [ngClass]="{ 'is-invalid': additionMin.invalid && additionMin.touched }">
             </div>
 
             <div class="input-wrapper">
                 <label for="addition-max">Addition max</label>
-                <input #input type="number" step="0.01" min="0" name="addition-max" id="addition-max" required [(ngModel)]="lense.staticCorrectionDetails.addition.max" #additionMax="ngModel" class="form-control" [ngClass]="{ 'is-invalid': additionMax.invalid && additionMax.touched }">
+                <input #input type="number" step="0.01" min="0" name="addition-max" id="addition-max" required [(ngModel)]="lense.staticCorrectionDetails.addition.max" #additionMax="ngModel" [ngClass]="{ 'is-invalid': additionMax.invalid && additionMax.touched }">
             </div>
         </fieldset>
 
@@ -201,14 +201,15 @@
             Index prices
         ================================= -->
 
-        <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted && !hasValidIndexValue }">
+        <!-- TODO: Add prices and index name here...or in backend? -->
+
+        <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted && !hasAtLeastOneIndexValue()}">
             <legend>Fyll i pris(erna) för glasets index</legend>
 
-            <div class="input-wrapper" *ngFor="let index of indices">
-                <label [for]="index.id" data-value="index.label">{{ index.display }}</label>
-                <input type="number" [name]="index.id" [id]="index.id" [(ngModel)]="index.value">
+            <div class="input-wrapper" *ngFor="let index of indexes">
+                <label [for]="index.id">{{ index.display }}</label>
+                <input type="number" min="0" [name]="index.id" [id]="index.id" [(ngModel)]="index.value">
             </div>
-
         </fieldset>
 
         <button type="submit" class="add-btn" [ngClass]="{ 'invalid-add-btn': form.invalid }">{{ form.invalid ? 'Fyll i alla fält' : 'Lägg Till' }}</button>

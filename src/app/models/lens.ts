@@ -13,7 +13,7 @@ export interface Lense {
     },
     indexData: {
         name: string,
-        price: number,
+        price: number | null,
         diameterStrengthBounds: {
             index: string,
             diameters: [Object]
