@@ -54,7 +54,8 @@
             "styles": [
               "src/styles.css",
               "src/styles-lenses.css",
-              "src/styles-table.css"
+              "src/styles-table.css",
+              "src/styles-modal.css"
             ],
             "scripts": []
           },
