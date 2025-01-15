@@ -34,24 +34,29 @@ export class LensesComponent {
     Server Methods
   ======================================*/
 
+  /* ===== Load all lenses ===== */
+
   private loadLenses() {
     this.backendService.getAllLenses().subscribe({
       next: (lenses: Lense[]) => {
         this.lenses = lenses
 
-        this.lenses.sort((a, b) => {
-          const typeComp = a.type.localeCompare(b.type)
-          if (typeComp !== 0) {
-            return typeComp
-          }
-          return b.quality - a.quality
-        })
-
+        this.sortLenses()
         this.extractIndexPrices()
       },
       error: (error) => {
         console.error(`An error occurred when getting lenses from the api: ${error.message}`);
       }
+    })
+  }
+
+  private sortLenses() {
+    this.lenses.sort((a, b) => {
+      const typeComp = a.type.localeCompare(b.type)
+      if (typeComp !== 0) {
+        return typeComp
+      }
+      return b.quality - a.quality
     })
   }
 
@@ -72,6 +77,8 @@ export class LensesComponent {
     });
   }
 
+  /* ===== Load one lenses ===== */
+
   private loadLense(lensName: string, quality: number) {
     this.backendService.getLense(lensName, quality).subscribe({
       next: (lense) => {
@@ -82,6 +89,8 @@ export class LensesComponent {
       }
     })
   }
+
+  /* ===== Delete a lense ===== */
 
   deleteLens(lensName: string, quality: number) {
     this.backendService.deleteLense(lensName, quality).subscribe({
@@ -95,6 +104,8 @@ export class LensesComponent {
     });
   }
 
+  /* ===== Edit a lense ===== */
+
   private editLense(lensName: string, quality: number, body: Object) {
     this.backendService.editLense(lensName, quality, body).subscribe({
       next: (lense) => {
@@ -106,6 +117,8 @@ export class LensesComponent {
       }
     });
   }
+
+  /* ===== Add a lense ===== */
 
   addLens(lense: any) {
     this.backendService.addLense(lense).subscribe({
@@ -160,7 +173,7 @@ export class LensesComponent {
 
   closeModal(modal: HTMLDialogElement, form: NgForm) {
     if (form) {
-      form.reset()
+      form.resetForm()
     }
 
     modal.close()
@@ -174,7 +187,7 @@ export class LensesComponent {
 
   /* ===== Add form methods ===== */
 
-  //TODO: when adding a lens it should be added to a dimension...based on its quality and type, or i just do a manual edit in the lens diameter data here on the page!!!
+  //TODO: when adding a lens it should be added to a dimension...based on its quality and type, or i just do a manual edit in the lens diameter data here on the page!!! So quick add the diameters and index. fix a patch method for diameters and then add some more documents and  video, no time for any other shit
   submitLens(form: NgForm) {
     console.log(this.lense);
 

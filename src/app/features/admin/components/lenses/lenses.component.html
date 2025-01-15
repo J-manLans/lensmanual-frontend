@@ -12,19 +12,21 @@
     <table>
         <thead>
             <tr>
+                <th class="lenses-wrapper__lens-type">#</th>
                 <th class="lenses-wrapper__lens-type">Typ</th>
                 <th class="lenses-wrapper__lens-name">Linsnamn</th>
                 <th class="lenses-wrapper__lens-quality">Kvalité</th>
                 <th class="lenses-wrapper__lens-manufacturing-type">Tillverknings Typ</th>
                 <th class="lenses-wrapper__lens-index-price">Index Pris</th>
-                <th class="lenses-wrapper__lens-index-price">Har diametrar</th>
+                <th class="lenses-wrapper__lens-diameter">Ø</th>
                 <th class="lenses-wrapper__lens-edit"></th>
                 <th class="lenses-wrapper__lens-delete"></th>
             </tr>
         </thead>
         <!-- The table body will be populated by main.js -->
         <tbody id="lenses-wrapper__lens_data">
-            <tr *ngFor="let lense of lenses">
+            <tr *ngFor="let lense of lenses; let i = index">
+                <td>{{1 + i}}</td>
                 <td>{{ lense.type }}</td>
                 <td>{{ lense.name }}</td>
                 <td>{{ lense.quality }}</td>
@@ -202,7 +204,7 @@
             Index prices
         ================================= -->
 
-        <fieldset id="index-required" class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted && !hasAtLeastOneIndexValue()}">
+        <fieldset class="index-fieldset" [ngClass]="{ 'is-invalid': form.submitted && !hasAtLeastOneIndexValue()}">
             <legend>Fyll i pris(erna) för glasets index</legend>
 
             <div class="input-wrapper" *ngFor="let index of indexes">

@@ -8,6 +8,9 @@
     margin: 1rem 0;
 
 }
+.lenses-wrapper__lens-diameter{
+    text-align: center;
+}
 button {
     background-color: var(--synsam-acc);
     padding: .2rem .4rem;
