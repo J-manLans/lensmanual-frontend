@@ -158,10 +158,10 @@ export class LensesComponent {
     }
   }
 
-  openModal(modal: HTMLDialogElement, lensName: string, quality: number): void;
-  openModal(modal: HTMLDialogElement, lensName?: string, quality?: number): void;
+  openModal(form: NgForm, modal: HTMLDialogElement, lensName: string, quality: number): void;
+  openModal(form: NgForm, modal: HTMLDialogElement, lensName?: string, quality?: number): void;
 
-  openModal(modal: HTMLDialogElement, lensName: string, quality: number ): void {
+  openModal(form: NgForm, modal: HTMLDialogElement, lensName: string, quality: number ): void {
     if (lensName && quality) {  // For the edit modal
       // Save the composite key for changing the correct lense in case name
       // or quality will be edited
@@ -171,6 +171,7 @@ export class LensesComponent {
       this.loadLense(lensName, quality)
     }
 
+    form.resetForm()
     modal.showModal()
   }
 
@@ -179,7 +180,6 @@ export class LensesComponent {
 
   closeModal(modal: HTMLDialogElement, form: NgForm) {
     if (form) {
-      form.resetForm()
     }
 
     modal.close()
@@ -189,7 +189,6 @@ export class LensesComponent {
   updateLens(lense: Lense, modal: HTMLDialogElement, form: NgForm) {
     this.editLense(this.orgLensName, this.orgQuality, lense)
     modal.close()
-    form.resetForm()
   }
 
   /* ===== Add form methods ===== */

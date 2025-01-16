@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ProgressiveComponent } from "../progressive/progressive.component";
 import { SingleComponent } from "../single/single.component";
@@ -11,6 +11,7 @@ import { SingleComponent } from "../single/single.component";
   styleUrl: './lens-manual.component.css'
 })
 export class LensManualComponent {
+
   ngOnInit(): void {
     this.heroImages()
   }
@@ -66,8 +67,10 @@ export class LensManualComponent {
    * Scrolls to the start of the specified section within the page.
    * @param section section to scroll to
    */
-  scrollIntoView(section: string): void {
-    document.querySelector(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    || console.warn(`Element with selector "${section}" not found.`)
+  scrollIntoView(section: HTMLDivElement): void {
+    section.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   }
 }

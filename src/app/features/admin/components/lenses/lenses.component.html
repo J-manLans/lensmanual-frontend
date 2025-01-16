@@ -6,7 +6,7 @@
 
     <div class="table-wrapper__table-header">
         <h2>Linser</h2>
-        <button (click)="openModal(addModal)">Ny Lins</button>
+        <button (click)="openModal(form, addModal)">Ny Lins</button>
     </div>
 
     <table>
@@ -33,7 +33,7 @@
                 <td>{{ lense.manufacturingType }}</td>
                 <td>{{ lense.indexPrices }}</td>
                 <td>{{ lense.indexData[0].diameterStrengthBounds !== null }}</td>
-                <td><button (click)="openModal(editModal, lense.name, lense.quality)" class="table-wrapper__edit-btn">Edit</button></td>
+                <td><button (click)="openModal(editForm, editModal, lense.name, lense.quality)" class="table-wrapper__edit-btn">Edit</button></td>
                 <td><button (click)="deleteLens(lense.name, lense.quality)" class="table-wrapper__delete-btn">Delete</button></td>
             </tr>
         </tbody>
@@ -80,7 +80,7 @@
         <select name="manufacturingType" id="edit-manufacturingType" [(ngModel)]="lense.manufacturingType">
             <option class="hidden-option" disabled selected></option>
             <option>RX</option>
-            <option>Stock</option>
+            <option>STOCK</option>
         </select>
 
         <fieldset class="strengths-fieldset">

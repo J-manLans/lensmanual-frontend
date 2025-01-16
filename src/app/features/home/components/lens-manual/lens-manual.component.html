@@ -10,10 +10,10 @@
 <nav>
   <ul>
     <li class="nav__links">
-      <a (click)="scrollIntoView('#progressive-section')">Progressiva</a>
+      <a (click)="scrollIntoView(progressive)">Progressiva</a>
     </li>
     <li class="nav__links">
-      <a (click)="scrollIntoView('#single-section')">Enkelslipade</a>
+      <a (click)="scrollIntoView(single)">Enkelslipade</a>
     </li>
     <li class="nav__links admin__links">
       <a routerLink="/admin">ADMIN</a>
@@ -28,14 +28,14 @@
     <!--===================================
       Progressive
     ====================================-->
-    <div class="lens-type-wrapper">
-      <app-progressive id="progressive-section"></app-progressive>
+    <div #progressive class="lens-type-wrapper">
+      <app-progressive  id="progressive-section"></app-progressive>
     </div>
 
     <!--===================================
       Single
     ====================================-->
-    <div class="lens-type-wrapper">
+    <div #single class="lens-type-wrapper">
       <app-single id="single-section"></app-single>
     </div>
 
