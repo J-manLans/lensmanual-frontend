@@ -58,7 +58,7 @@ export class LensManualComponent {
     */
     const heroImage = availableImages[Math.floor((Math.random() * availableImages.length))];
 
-    document.getElementById('manual-header')!.style.backgroundImage = `url('/img/hero-img/${heroImage}')`;
+    document.getElementById('manual-header')!.style.backgroundImage = `url('/img/${heroImage}')`;
 
     sessionStorage.setItem('heroImage', heroImage);
   };
