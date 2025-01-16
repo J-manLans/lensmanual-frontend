@@ -96,7 +96,7 @@ export class LensesComponent {
     this.backendService.deleteLense(lensName, quality).subscribe({
       next: (lense) => {
         console.log(`Linsen ${lense.name} togs bort.`);
-        this.loadLenses();
+        this.loadLenses()
       },
       error: (error) => {
         console.error(`An error occurred when deleting lense ${lensName}: ${error.message}`);
@@ -116,7 +116,7 @@ export class LensesComponent {
     this.backendService.editLense(lensName, quality, body).subscribe({
       next: (lense) => {
         console.log(`Linsen ${lense.name} ändrades.`);
-        this.loadLenses();
+        this.loadLenses()
       },
       error: (error) => {
         console.error(`An error occurred when editing lense ${lensName}: ${error.message}`);
@@ -126,11 +126,11 @@ export class LensesComponent {
 
   /* ===== Add a lense ===== */
 
-  addLens(lense: any) {
+  addLens(lense: Lense) {
     this.backendService.addLense(lense).subscribe({
-      next: (lense) => {
-        console.log(`Linsen ${lense.name} lades till.`);
-        this.loadLenses();
+      next: (addedLense) => {
+        console.log(`Linsen ${addedLense.name} lades till.`);
+        this.loadLenses()
       },
       error: (error) => {
         console.error(`An error occurred when adding lense ${lense.name}: ${error.message}`);
@@ -175,13 +175,7 @@ export class LensesComponent {
     modal.showModal()
   }
 
-  closeModal(modal: HTMLDialogElement, form: NgForm): void;
-  closeModal(modal: HTMLDialogElement, form?: NgForm): void;
-
-  closeModal(modal: HTMLDialogElement, form: NgForm) {
-    if (form) {
-    }
-
+  closeModal(modal: HTMLDialogElement) {
     modal.close()
     this.lense = this.initializeVitalFieldsForLense() as Lense
   }

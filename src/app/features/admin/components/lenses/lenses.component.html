@@ -110,7 +110,7 @@
 <!-- Add Modal -->
 
 <dialog class="modal" #addModal>
-    <button class="close-modal" (click)="closeModal(addModal, form)">Stäng</button>
+    <button class="close-modal" (click)="closeModal(addModal)">Stäng</button>
 
     <form #form="ngForm" (ngSubmit)="submitLens(form, addModal)">
         <h3>Fyll i alla fält</h3>
