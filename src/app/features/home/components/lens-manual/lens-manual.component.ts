@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ProgressiveComponent } from "../progressive/progressive.component";
 import { SingleComponent } from "../single/single.component";
@@ -10,9 +10,10 @@ import { SingleComponent } from "../single/single.component";
   templateUrl: './lens-manual.component.html',
   styleUrl: './lens-manual.component.css'
 })
-export class LensManualComponent {
+export class LensManualComponent implements AfterViewInit {
+@ViewChild('hero') hero!: ElementRef
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.heroImages()
   }
 
@@ -57,8 +58,7 @@ export class LensManualComponent {
     floor method. Then this number is used to retrieve the new heroImage from the array
     */
     const heroImage = availableImages[Math.floor((Math.random() * availableImages.length))];
-
-    document.getElementById('manual-header')!.style.backgroundImage = `url('/img/${heroImage}')`;
+    this.hero.nativeElement.style.backgroundImage = `url('${heroImage}')`;
 
     sessionStorage.setItem('heroImage', heroImage);
   };
