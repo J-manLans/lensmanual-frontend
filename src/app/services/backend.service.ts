@@ -11,7 +11,7 @@ import { Index } from '../models/Index';
 export class BackendService {
   private remoteApiUrl = 'https://jola2311-project-backend-dt190g-ht24.azurewebsites.net'
   private localApiUrl = 'http://localhost:3000'
-  private apiUrl = `${this.remoteApiUrl}/api/v1`
+  private apiUrl = `${this.localApiUrl}/api/v1`
 
   constructor(private http: HttpClient) {}
 
